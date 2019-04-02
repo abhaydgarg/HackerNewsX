@@ -14,9 +14,7 @@ import Header from '../Components/Header';
 import Main from '../Components/Main';
 import Footer from '../Components/Footer';
 import NoMatch from '../Components/NoMatch';
-import NewStoriesContainer from './NewStoriesContainer';
-import BestStoriesContainer from './BestStoriesContainer';
-import TopStoriesContainer from './TopStoriesContainer';
+import StoriesContainer from './StoriesContainer';
 
 class RootContainer extends Component {
   static propTypes = {
@@ -56,9 +54,9 @@ class RootContainer extends Component {
           <Main>
             <Switch>
               <AppRoute exact path='/' render={this.rootRedirect} />
-              <AppRoute title='10 recent new stories' exact path='/new' component={NewStoriesContainer} />
-              <AppRoute title='10 recent best stories' exact path='/best' component={BestStoriesContainer} />
-              <AppRoute title='10 recent top stories' exact path='/top' component={TopStoriesContainer} />
+              <AppRoute title='10 recent new stories' exact path='/new' component={StoriesContainer} />
+              <AppRoute title='10 recent best stories' exact path='/best' component={StoriesContainer} />
+              <AppRoute title='10 recent top stories' exact path='/top' component={StoriesContainer} />
               {/* when none of the above match, <NoMatch> will be rendered */}
               <AppRoute title='Page not found' component={NoMatch} />
             </Switch>
