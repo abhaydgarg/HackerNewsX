@@ -1,0 +1,53 @@
+{
+  "name": "HackerNewsX",
+  "version": "1.0.0",
+  "description": "10 recent new, top and best Hacker News stories.",
+  "scripts": {
+    "start": "neutrino start",
+    "build": "neutrino build",
+    "print:webpack:config": "neutrino start --inspect-new",
+    "output:webpack:config": "neutrino start --inspect-new > webpack.config.js"
+  },
+  "dependencies": {
+    "@abhaydgarg/is": "^1.1.0",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "js-cookie": "^2.2.0",
+    "metascraper": "^5.0.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "@neutrinojs/react": "^8.3.0",
+    "babel-eslint": "^10.0.1",
+    "neutrino": "^8.3.0",
+    "semistandard": "^13.0.1"
+  },
+  "semistandard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "/docs"
+    ]
+  },
+  "keywords": [
+    "hacker",
+    "news",
+    "recent",
+    "10",
+    "ten",
+    "x",
+    "stories",
+    "top",
+    "new",
+    "best"
+  ],
+  "author": "Abhay Garg",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhaydgarg/HackerNewsX.git"
+  }
+}
