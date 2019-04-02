@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={this.state.theme}>
         <CssBaseline />
-        <Router hashType='noslash' basename={this.getBaseUrl()}>
+        <Router hashType='noslash'>
           <RootContainer />
         </Router>
       </MuiThemeProvider>
