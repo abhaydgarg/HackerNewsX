@@ -3,7 +3,7 @@
  * is to setup Redux or any other non-visual "global" modules.
  */
 import { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={this.state.theme}>
         <CssBaseline />
-        <Router basename={this.getBaseUrl()}>
+        <Router hashType='noslash' basename={this.getBaseUrl()}>
           <RootContainer />
         </Router>
       </MuiThemeProvider>
