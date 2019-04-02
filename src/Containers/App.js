@@ -32,10 +32,6 @@ class App extends Component {
     });
   }
 
-  getBaseUrl = () => {
-    return process.env.NODE_ENV === 'production' ? '/HackerNewsX' : null;
-  }
-
   render () {
     return (
       <MuiThemeProvider theme={this.state.theme}>
