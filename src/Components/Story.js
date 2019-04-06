@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from '@abhaydgarg/is';
+import TimeAgo from 'react-timeago';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -20,16 +21,18 @@ function Story (props) {
       return null;
     }
     return (
-      <Link
-        target='__blank'
-        color='inherit'
-        href={props.url}
-      >
-        <img
-          className={props.classes.image}
-          src={props.image}
-        />
-      </Link>
+      <Grid item className={props.classes.imageContainer} style={{ backgroundImage: `url(${props.image})` }} />
+    );
+  };
+
+  const renderXsScreenImage = () => {
+    if (isEmpty(props.image)) {
+      return null;
+    }
+    return (
+      <Grid item className={props.classes.xsScreenImageContainer}>
+        <img src={props.image} className={props.classes.xsScreenImage} />
+      </Grid>
     );
   };
 
@@ -39,11 +42,12 @@ function Story (props) {
 
   return (
     <Grid container item justify='center'>
-      <Paper className={`${props.classes.paper} animated slow fadeIn`}>
-        <Grid container direction='column' spacing={40} >
+      <Paper className={`${props.classes.paper} animated slower fadeIn`}>
+        <Grid container direction='column' spacing={32} >
+          {renderXsScreenImage()}
           <Grid item>
-            <Grid container wrap='nowrap' className={props.classes.topContainer}>
-              <Grid item xs className={props.classes.content}>
+            <Grid container wrap='nowrap'>
+              <Grid item xs>
                 <Typography variant='h6'>
                   <Link
                     target='__blank'
@@ -59,13 +63,9 @@ function Story (props) {
                   variant='outlined'
                   color='default'
                 />
-                <Typography variant='body2' color='textSecondary'>
-                  {props.description}
-                </Typography>
+                <Typography variant='body2' color='textSecondary' dangerouslySetInnerHTML={{ __html: props.description }} />
               </Grid>
-              <Grid item className={props.classes.imageContainer}>
-                {renderImage()}
-              </Grid>
+              {renderImage()}
             </Grid>
           </Grid>
           <Grid container item justify='flex-end'>
@@ -73,22 +73,20 @@ function Story (props) {
               <Grid item>
                 <Chip
                   avatar={<Avatar><TimerIcon /></Avatar>}
-                  label={props.time}
-                  color='primary'
-                  className={props.classes.bottomChip}
+                  label={<TimeAgo date={props.time} live />}
+                  color='default'
                 />
               </Grid>
               <Grid item>
                 <Chip
                   avatar={<Avatar>PT</Avatar>}
                   label={props.points}
-                  color='primary'
-                  className={props.classes.bottomChip}
+                  color='default'
                 />
               </Grid>
               <Grid item className={props.classes.commentButtonContainer}>
                 <Button
-                  variant='outlined'
+                  variant='contained'
                   color='primary'
                   size='small'
                   onClick={handleComment}
@@ -110,7 +108,7 @@ Story.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   website: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
+  time: PropTypes.number.isRequired,
   commentUrl: PropTypes.string.isRequired,
   points: PropTypes.number,
   comments: PropTypes.number,

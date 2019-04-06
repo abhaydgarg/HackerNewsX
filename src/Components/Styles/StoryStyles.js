@@ -1,23 +1,14 @@
 export default (theme) => ({
   paper: {
     padding: '16px',
+    width: '100%',
     // Above 1280px
     [theme.breakpoints.up('lg')]: {
-      maxWidth: '960px'
+      width: '960px'
     },
     // Above 1920px
     [theme.breakpoints.up('xl')]: {
-      maxWidth: '1280px'
-    }
-  },
-  topContainer: {
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column'
-    }
-  },
-  content: {
-    [theme.breakpoints.down('sm')]: {
-      order: 1
+      width: '1280px'
     }
   },
   websiteChip: {
@@ -26,28 +17,34 @@ export default (theme) => ({
     height: '25px'
   },
   imageContainer: {
-    [theme.breakpoints.down('sm')]: {
-      alignSelf: 'center'
+    width: '150px',
+    height: '150px',
+    marginLeft: '20px',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'top',
+    borderRadius: 4,
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
     }
   },
-  image: {
-    marginLeft: '35px',
-    borderRadius: '4px',
+  xsScreenImageContainer: {
+    display: 'none',
+    padding: '0 !important',
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+      margin: 'auto',
+      padding: '16px 16px 0px 16px !important'
+    }
+  },
+  xsScreenImage: {
     maxWidth: '100%',
-    width: '250px',
     height: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
-      marginBottom: '15px',
-      width: 'auto'
-    }
-  },
-  bottomChip: {
-    height: '25px'
+    borderRadius: 4
   },
   commentButtonContainer: {
     marginLeft: 'auto',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       marginLeft: 0
     }
   },

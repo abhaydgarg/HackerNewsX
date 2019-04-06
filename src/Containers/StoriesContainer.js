@@ -1,42 +1,109 @@
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import ErrorIcon from '@material-ui/icons/ErrorOutline';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 
 import RefreshContext from '../Context/RefreshContext';
+import Util from '../Lib/Util';
 import styles from './Styles/StoriesContainerStyles';
-import Story from '../Components/Story';
+import { getStories } from '../Lib/Services';
+import ScreenLoader from '../Components/ScreenLoader';
+import ScreenMessage from '../Components/ScreenMessage';
+import StoryContainer from './StoryContainer';
 
-import storiesFixture from '../fixture';
-
-class NewStoriesContainer extends Component {
-  // Accessing context using this.context in
-  // lifecycle metnods.
+class StoriesContainer extends Component {
+  // Accessing context using `this.context`
+  // in lifecycle metnods.
   static contextType = RefreshContext;
 
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired
   }
 
-  componentDidMount () {
-    console.log('NewStoriesContainer[MOUNTED]');
+  constructor (props) {
+    super(props);
+    this.state = {
+      fetched: false,
+      error: false,
+      stories: []
+    };
+  }
+
+  getType () {
+    return this.props.location.pathname.substring(1);
+  }
+
+  async componentDidMount () {
+    try {
+      const stories = await getStories(this.getType());
+      this.setState({
+        fetched: true,
+        error: false,
+        stories: stories
+      });
+    } catch (err) {
+      Util.consoleError(err);
+      this.setState({
+        fetched: false,
+        error: true
+      });
+    }
   }
 
   componentDidUpdate () {
-    console.log('NewStoriesContainer[UPDATED]');
     if (this.context.refresh === true) {
+      console.log('StoriesContainer[UPDATED][REFRESH Context]');
       this.context.onRefreshReset();
     }
   }
 
+  renderStories = () => {
+    return this.state.stories.map((story) => {
+      return (
+        <StoryContainer
+          key={story}
+          id={story}
+        />
+      );
+    });
+  }
+
   render () {
+    if (this.state.error === true) {
+      return (
+        <ScreenMessage>
+          <ErrorIcon color='error' fontSize='large' />
+          <Typography variant='subtitle2' className={this.props.classes.screenMessageText}>
+            {`Cannot fetch ${this.getType()} stories`}
+          </Typography>
+        </ScreenMessage>
+      );
+    }
+    if (this.state.fetched === true) {
+      if (this.state.stories.length === 0) {
+        return (
+          <ScreenMessage>
+            <InfoIcon color='primary' fontSize='large' />
+            <Typography variant='subtitle2' className={this.props.classes.screenMessageText}>
+              {`Empty ${this.getType()} stories`}
+            </Typography>
+          </ScreenMessage>
+        );
+      }
+      return (
+        <Grid container direction='column' wrap='nowrap' spacing={24}>
+          {this.renderStories()}
+        </Grid>
+      );
+    }
     return (
-      <Fragment>
-        <Story {...storiesFixture[0]} />
-        <Story {...storiesFixture[1]} />
-        <Story {...storiesFixture[2]} />
-      </Fragment>
+      <ScreenLoader />
     );
   }
 }
 
-export default withStyles(styles)(NewStoriesContainer);
+export default withStyles(styles)(StoriesContainer);

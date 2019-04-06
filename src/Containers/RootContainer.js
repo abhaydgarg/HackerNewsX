@@ -54,16 +54,15 @@ class RootContainer extends Component {
           <Main>
             <Switch>
               <AppRoute exact path='/' render={this.rootRedirect} />
-              <AppRoute title='10 recent new stories' exact path='/new' component={StoriesContainer} />
-              <AppRoute title='10 recent best stories' exact path='/best' component={StoriesContainer} />
-              <AppRoute title='10 recent top stories' exact path='/top' component={StoriesContainer} />
-              {/* when none of the above match, <NoMatch> will be rendered */}
+              <AppRoute key='newstories' title='10 recent new stories' exact path='/new' component={StoriesContainer} />
+              <AppRoute key='beststories' title='10 recent best stories' exact path='/best' component={StoriesContainer} />
+              <AppRoute key='topstories' title='10 recent top stories' exact path='/top' component={StoriesContainer} />
               <AppRoute title='Page not found' component={NoMatch} />
             </Switch>
           </Main>
         </RefreshProvider>
         <Footer />
-      </div >
+      </div>
     );
   }
 }

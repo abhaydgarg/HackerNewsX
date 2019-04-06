@@ -12,13 +12,17 @@
     "@abhaydgarg/is": "^1.1.0",
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "hacker-news-api-consumer": "0.0.1",
     "js-cookie": "^2.2.0",
-    "metascraper": "^5.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-content-loader": "^4.2.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-timeago": "^4.4.0",
+    "unfluff": "^3.2.0"
   },
   "devDependencies": {
     "@neutrinojs/react": "^8.3.0",

@@ -1,13 +1,12 @@
 export default (theme) => {
   return {
     root: {
-      display: 'flex',
-      maxHeight: '70px'
+      display: 'flex'
     },
     logo: {
-      width: '100%',
+      width: '50px',
       height: 'auto',
-      maxWidth: '70px',
+      maxWidth: '100%',
       marginRight: '20px'
     },
     menu: {
