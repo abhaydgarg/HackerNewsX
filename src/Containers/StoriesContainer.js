@@ -37,7 +37,7 @@ class StoriesContainer extends Component {
     return this.props.location.pathname.substring(1);
   }
 
-  async componentDidMount () {
+  async fetchSrories () {
     try {
       const stories = await getStories(this.getType());
       this.setState({
@@ -52,6 +52,10 @@ class StoriesContainer extends Component {
         error: true
       });
     }
+  }
+
+  componentDidMount () {
+    this.fetchSrories();
   }
 
   componentDidUpdate () {

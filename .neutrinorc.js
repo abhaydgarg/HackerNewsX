@@ -1,3 +1,13 @@
+function googleAnalytics () {
+  if (process.env.NODE_ENV === 'development') {
+    return undefined;
+  }
+  return {
+    trackingId: 'UA-137847359-1',
+    pageViewOnLoad: true
+  }
+}
+
 module.exports = {
   options: {
     output: 'docs',
@@ -6,10 +16,7 @@ module.exports = {
     ['@neutrinojs/react', {
       html: {
         title: 'HackerNewsX',
-        // googleAnalytics: {
-        //   trackingId: '',
-        //   pageViewOnLoad: true
-        // },
+        googleAnalytics: googleAnalytics(),
         links: [
           {
             href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500',

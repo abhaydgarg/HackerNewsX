@@ -24,6 +24,11 @@ export const storiesFixture = {
   }
 };
 
+export const metadataFixture = {
+  image: 'https://omicron.aeon.co/images/91998301-fdcf-43a3-978b-ed368417931d/idea_sized-regnault_socrates_tears_alcibiades_from_the_embrace_of_sensual_pleasure.jpg',
+  description: 'Plato portrays him as a pious ethical teacher, but was the real Socrates actually a more worldly man with many lovers?'
+};
+
 export const finalStoryFixture = {
   id: 19574396,
   image: 'https://omicron.aeon.co/images/91998301-fdcf-43a3-978b-ed368417931d/idea_sized-regnault_socrates_tears_alcibiades_from_the_embrace_of_sensual_pleasure.jpg',

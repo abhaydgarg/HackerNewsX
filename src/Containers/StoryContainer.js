@@ -23,7 +23,7 @@ class StoryContainer extends Component {
     };
   }
 
-  async componentDidMount () {
+  async fetchStory () {
     try {
       let story = await getStory(this.props.id);
       if (story.canFetchMetadata === true) {
@@ -44,6 +44,10 @@ class StoryContainer extends Component {
         error: true
       });
     }
+  }
+
+  componentDidMount () {
+    this.fetchStory();
   }
 
   render () {

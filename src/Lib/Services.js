@@ -5,7 +5,7 @@ import url from 'url';
 import extractor from 'unfluff';
 
 import Util from './Util';
-import { idsFixture, storiesFixture } from '../fixtures';
+import { idsFixture, storiesFixture, metadataFixture } from '../fixtures';
 
 const fixture = false;
 const sessionStorage = typeof window.sessionStorage === 'undefined' ? undefined : window.sessionStorage;
@@ -52,39 +52,17 @@ export async function getStory (id) {
   return mapper(response.data);
 }
 
-function mapper (object) {
-  // Initial values when url
-  // is not present in story;
-  // story can be ask or show.
-  let story = {
-    id: object.id,
-    title: object.title,
-    image: null,
-    description: object.text,
-    url: `${ycombinatorUrl}item?id=${object.id}`,
-    website: 'news.ycombinator',
-    time: object.time * 1000,
-    points: object.score,
-    comments: object.descendants,
-    commentUrl: `${ycombinatorUrl}item?id=${object.id}`,
-    canFetchMetadata: false
-  };
-
-  if (!isEmpty(object.url)) {
-    story.description = null;
-    story.url = object.url;
-    story.website = url.parse(object.url).hostname;
-    story.canFetchMetadata = true;
-  }
-  return story;
-}
-
 export async function getMetadata (id, url) {
   // First try to get metadata from storage.
   let metadata = getMetadataFromStorage(id);
   if (isObject(metadata)) {
     return metadata;
   }
+
+  if (fixture === true) {
+    return metadataFixture;
+  }
+
   try {
     const response = await axios.get(`${corsFreeUrl}${url}`, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
@@ -117,9 +95,7 @@ function getMetadataFromStorage (id) {
         // is missing and metadata is present but it is not object.
         // So instead deeply check the type and key of storage variable
         // using multiple if statements, it is better to use try/catch
-        // which catch any type of error. Also program execution
-        // will not stop if localstorage data is altered by
-        // other sources.
+        // which catch any type of error.
         return JSON.parse(metadata);
       } catch (e) {
         Util.consoleWarn(`Cannot get metadata from storage [${id}]`);
@@ -137,4 +113,31 @@ function addMetadata (id, metadata) {
   } catch (e) {
     Util.consoleWarn(`Cannot add metadata to storage [${id}]`);
   }
+}
+
+function mapper (object) {
+  // Initial values when url
+  // is not present in story;
+  // story can be ask or show.
+  let story = {
+    id: object.id,
+    title: object.title,
+    image: null,
+    description: object.text,
+    url: `${ycombinatorUrl}item?id=${object.id}`,
+    website: 'news.ycombinator',
+    time: object.time * 1000,
+    points: object.score,
+    comments: object.descendants,
+    commentUrl: `${ycombinatorUrl}item?id=${object.id}`,
+    canFetchMetadata: false
+  };
+
+  if (!isEmpty(object.url)) {
+    story.description = null;
+    story.url = object.url;
+    story.website = url.parse(object.url).hostname;
+    story.canFetchMetadata = true;
+  }
+  return story;
 }
