@@ -2,6 +2,7 @@ import grey from '@material-ui/core/colors/grey';
 
 export default {
   root: {
+    height: '100px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
