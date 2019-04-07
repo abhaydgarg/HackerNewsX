@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import ErrorIcon from '@material-ui/icons/ErrorOutline';
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 
-import RefreshContext from '../Context/RefreshContext';
 import Util from '../Lib/Util';
 import styles from './Styles/StoriesContainerStyles';
 import { getStories } from '../Lib/Services';
@@ -15,10 +14,6 @@ import ScreenMessage from '../Components/ScreenMessage';
 import StoryContainer from './StoryContainer';
 
 class StoriesContainer extends Component {
-  // Accessing context using `this.context`
-  // in lifecycle metnods.
-  static contextType = RefreshContext;
-
   static propTypes = {
     classes: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired
@@ -56,13 +51,6 @@ class StoriesContainer extends Component {
 
   componentDidMount () {
     this.fetchSrories();
-  }
-
-  componentDidUpdate () {
-    if (this.context.refresh === true) {
-      console.log('StoriesContainer[UPDATED][REFRESH Context]');
-      this.context.onRefreshReset();
-    }
   }
 
   renderStories = () => {

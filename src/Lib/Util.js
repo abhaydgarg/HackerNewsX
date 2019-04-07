@@ -19,6 +19,10 @@ export default class {
     return theme;
   }
 
+  static random1To10 () {
+    return Math.floor((Math.random() * 10) + 1);
+  }
+
   static consoleLog (message) {
     if (__DEV__ === true) {
       console.log(message);

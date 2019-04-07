@@ -16,6 +16,9 @@ export default (theme) => ({
     borderRadius: 0,
     height: '25px'
   },
+  description: {
+    wordBreak: 'break-word'
+  },
   imageContainer: {
     width: '150px',
     height: '150px',

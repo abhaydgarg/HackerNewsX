@@ -1,13 +1,3 @@
-function googleAnalytics () {
-  if (process.env.NODE_ENV === 'development') {
-    return undefined;
-  }
-  return {
-    trackingId: 'UA-137847359-1',
-    pageViewOnLoad: true
-  }
-}
-
 module.exports = {
   options: {
     output: 'docs',
@@ -55,3 +45,12 @@ module.exports = {
   ]
 };
 
+function googleAnalytics () {
+  if (process.env.NODE_ENV === 'development') {
+    return undefined;
+  }
+  return {
+    trackingId: 'UA-137847359-1',
+    pageViewOnLoad: true
+  }
+}

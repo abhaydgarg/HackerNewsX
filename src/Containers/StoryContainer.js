@@ -28,9 +28,7 @@ class StoryContainer extends Component {
       let story = await getStory(this.props.id);
       if (story.canFetchMetadata === true) {
         const metadata = await getMetadata(story.id, story.url);
-        if (metadata !== null) {
-          story = { ...story, ...metadata };
-        }
+        story = { ...story, ...metadata };
       }
       this.setState({
         fetched: true,

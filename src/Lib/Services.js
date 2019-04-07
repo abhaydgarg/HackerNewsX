@@ -63,22 +63,25 @@ export async function getMetadata (id, url) {
     return metadataFixture;
   }
 
+  metadata = {};
+
   try {
     const response = await axios.get(`${corsFreeUrl}${url}`, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
     });
     let data = extractor.lazy(response.data);
-    let metadata = {
+    metadata = {
       description: data.description(),
       image: data.image()
     };
-    addMetadata(id, metadata);
-    return metadata;
   } catch (e) {
     // Do not stop, if metadata is failed to fetch.
     Util.consoleWarn(`Cannot fetch metadata [${url}]`);
-    return null;
   }
+  // Store the metadata even in success and failure.
+  // Do not try again.
+  addMetadata(id, metadata);
+  return metadata;
 }
 
 function getMetadataFromStorage (id) {

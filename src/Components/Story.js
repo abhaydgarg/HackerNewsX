@@ -63,7 +63,7 @@ function Story (props) {
                   variant='outlined'
                   color='default'
                 />
-                <Typography variant='body2' color='textSecondary' dangerouslySetInnerHTML={{ __html: props.description }} />
+                <Typography variant='body2' color='textSecondary' className={props.classes.description} dangerouslySetInnerHTML={{ __html: props.description }} />
               </Grid>
               {renderImage()}
             </Grid>
