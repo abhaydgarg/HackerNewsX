@@ -26,14 +26,19 @@ class StoryContainer extends Component {
   async fetchStory () {
     try {
       let story = await getStory(this.props.id);
-      if (story.canFetchMetadata === true) {
-        const metadata = await getMetadata(story.id, story.url);
-        story = { ...story, ...metadata };
-      }
       this.setState({
         fetched: true,
         error: false,
         story: story
+      }, async () => {
+        if (story.canFetchMetadata === true) {
+          const metadata = await getMetadata(story.id, story.url);
+          this.setState((prevState, props) => {
+            return {
+              story: { ...prevState.story, ...metadata }
+            };
+          });
+        }
       });
     } catch (err) {
       Util.consoleError(err.message);

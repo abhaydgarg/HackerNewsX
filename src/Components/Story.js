@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from '@abhaydgarg/is';
 import TimeAgo from 'react-timeago';
@@ -16,12 +16,25 @@ import CommentIcon from '@material-ui/icons/AddComment';
 import styles from './Styles/StoryStyles';
 
 function Story (props) {
+  const [backgroundImageSize, setBackgroundImageSize] = useState('cover');
+  const [backgroundImageBorderRadius, setBackgroundImageBorderRadius] = useState(4);
+
+  const onMouseOver = () => {
+    setBackgroundImageSize('contain');
+    setBackgroundImageBorderRadius(0);
+  };
+
+  const onMouseOut = () => {
+    setBackgroundImageSize('cover');
+    setBackgroundImageBorderRadius(4);
+  };
+
   const renderImage = () => {
     if (isEmpty(props.image)) {
       return null;
     }
     return (
-      <Grid item className={props.classes.imageContainer} style={{ backgroundImage: `url(${props.image})` }} />
+      <Grid item className={`${props.classes.imageContainer} animated fadeIn`} style={{ backgroundImage: `url(${props.image})`, backgroundSize: backgroundImageSize, borderRadius: backgroundImageBorderRadius }} onMouseOver={onMouseOver} onMouseOut={onMouseOut}/>
     );
   };
 
@@ -31,7 +44,7 @@ function Story (props) {
     }
     return (
       <Grid item className={props.classes.xsScreenImageContainer}>
-        <img src={props.image} className={props.classes.xsScreenImage} />
+        <img src={props.image} className={`${props.classes.xsScreenImage} animated fadeIn`} />
       </Grid>
     );
   };
@@ -63,7 +76,7 @@ function Story (props) {
                   variant='outlined'
                   color='default'
                 />
-                <Typography variant='body2' color='textSecondary' className={props.classes.description} dangerouslySetInnerHTML={{ __html: props.description }} />
+                <Typography variant='body2' color='textSecondary' className={`${props.classes.description} animated slow fadeIn`} dangerouslySetInnerHTML={{ __html: props.description }} />
               </Grid>
               {renderImage()}
             </Grid>

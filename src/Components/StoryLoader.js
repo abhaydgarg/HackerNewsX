@@ -25,18 +25,17 @@ function StoryLoader (props) {
     <Grid container item justify='center'>
       <Paper className={`${props.classes.paper} animated slower fadeIn`}>
         <ContentLoader
-          height={90}
+          height={50}
           ariaLabel='Loading story...'
           primaryColor={props.theme.palette.type === 'light' ? '#f3f3f3' : '#2c2c2c'}
           secondaryColor={props.theme.palette.type === 'light' ? '#ecebeb' : '#181818'}
         >
-          <rect x='7' y='14' rx='3' ry='3' width='259' height='4' />
-          <rect x='7' y='25' rx='3' ry='3' width='237' height='4' />
-          <rect x='7' y='36' rx='3' ry='3' width='201' height='6' />
-          <rect x='350' y='13' rx='4' ry='4' width='40' height='40' />
-          <rect x='7' y='70' rx='3' ry='3' width='62' height='11' />
-          <rect x='75' y='70' rx='3' ry='3' width='62' height='11' />
-          <rect x='328' y='70' rx='3' ry='3' width='62' height='11' />
+          <rect x='7' y='5' rx='3' ry='3' width='259' height='4' />
+          <rect x='7' y='15' rx='3' ry='3' width='237' height='4' />
+          <rect x='358' y='5' rx='4' ry='4' width='30' height='30' />
+          <rect x='7' y='43' rx='3' ry='3' width='52' height='7' />
+          <rect x='70' y='43' rx='3' ry='3' width='52' height='7' />
+          <rect x='346' y='43' rx='3' ry='3' width='42' height='7' />
         </ContentLoader>
       </Paper>
     </Grid>
