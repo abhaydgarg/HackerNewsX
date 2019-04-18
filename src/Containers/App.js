@@ -3,13 +3,15 @@
  * is to setup Redux or any other non-visual "global" modules.
  */
 import { Component } from 'react';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import getTheme from '../Theme';
 import Util from '../Lib/Util';
 import RootContainer from './RootContainer';
+
+const __DEV__ = process.env.NODE_ENV === 'development';
 
 class App extends Component {
   constructor (props) {
@@ -32,11 +34,18 @@ class App extends Component {
     });
   }
 
+  basename = () => {
+    if (__DEV__ === true) {
+      return;
+    }
+    return '/HackerNewsX';
+  }
+
   render () {
     return (
       <MuiThemeProvider theme={this.state.theme}>
         <CssBaseline />
-        <Router hashType='noslash'>
+        <Router basename={this.basename()}>
           <RootContainer />
         </Router>
       </MuiThemeProvider>
