@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from '@abhaydgarg/is';
 import TimeAgo from 'react-timeago';
@@ -16,25 +16,12 @@ import CommentIcon from '@material-ui/icons/AddComment';
 import styles from './Styles/StoryStyles';
 
 function Story (props) {
-  const [backgroundImageSize, setBackgroundImageSize] = useState('cover');
-  const [backgroundImageBorderRadius, setBackgroundImageBorderRadius] = useState(4);
-
-  const onMouseOver = () => {
-    setBackgroundImageSize('contain');
-    setBackgroundImageBorderRadius(0);
-  };
-
-  const onMouseOut = () => {
-    setBackgroundImageSize('cover');
-    setBackgroundImageBorderRadius(4);
-  };
-
   const renderImage = () => {
     if (isEmpty(props.image)) {
       return null;
     }
     return (
-      <Grid item className={`${props.classes.imageContainer} animated fadeIn`} style={{ backgroundImage: `url(${props.image})`, backgroundSize: backgroundImageSize, borderRadius: backgroundImageBorderRadius }} onMouseOver={onMouseOver} onMouseOut={onMouseOut}/>
+      <Grid item className={`${props.classes.imageContainer} animated fadeIn`} style={{ backgroundImage: `url(${props.image})` }} />
     );
   };
 

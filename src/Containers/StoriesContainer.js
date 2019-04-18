@@ -45,7 +45,7 @@ class StoriesContainer extends Component {
         fetched: false,
         error: true
       });
-      Util.consoleWarn(err);
+      Util.consoleWarn(`[STORIES][${err.message}]`);
     }
   }
 

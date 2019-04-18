@@ -32,7 +32,7 @@ class StoryContainer extends Component {
         };
       });
     } catch (err) {
-      Util.consoleWarn(err);
+      Util.consoleWarn(`[METADATA][${err.message}] ${url}`);
     }
   }
 
@@ -53,7 +53,7 @@ class StoryContainer extends Component {
         fetched: false,
         error: true
       });
-      Util.consoleWarn(err);
+      Util.consoleWarn(`[STORY][${err.message}] ${this.props.id}`);
     }
   }
 

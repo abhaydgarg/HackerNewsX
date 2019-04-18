@@ -29,6 +29,10 @@ export default (theme) => ({
     borderRadius: 4,
     [theme.breakpoints.down('xs')]: {
       display: 'none'
+    },
+    '&:hover': {
+      backgroundSize: 'contain',
+      borderRadius: 0
     }
   },
   xsScreenImageContainer: {
