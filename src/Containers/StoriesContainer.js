@@ -41,11 +41,11 @@ class StoriesContainer extends Component {
         stories: stories
       });
     } catch (err) {
-      Util.consoleError(err);
       this.setState({
         fetched: false,
         error: true
       });
+      Util.consoleWarn(err);
     }
   }
 

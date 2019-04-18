@@ -1,21 +1,20 @@
 import Cookies from 'js-cookie';
 
-const HackerNewsXTheme = 'HackerNewsXTheme';
-const __DEV__ = process.env.NODE_ENV === 'development';
+import Config from '../Config';
 
 export default class {
   static getCurrentTheme () {
-    let theme = Cookies.get(HackerNewsXTheme);
+    let theme = Cookies.get(Config.themeKey);
     if (theme === undefined) {
       theme = 'dark';
-      Cookies.set(HackerNewsXTheme, theme);
+      Cookies.set(Config.themeKey, theme);
     }
     return theme;
   }
 
   static setTheme () {
-    let theme = Cookies.get(HackerNewsXTheme) === 'light' ? 'dark' : 'light';
-    Cookies.set(HackerNewsXTheme, theme);
+    let theme = Cookies.get(Config.themeKey) === 'light' ? 'dark' : 'light';
+    Cookies.set(Config.themeKey, theme);
     return theme;
   }
 
@@ -24,19 +23,19 @@ export default class {
   }
 
   static consoleLog (message) {
-    if (__DEV__ === true) {
+    if (Config.dev === true) {
       console.log(message);
     }
   }
 
   static consoleWarn (message) {
-    if (__DEV__ === true) {
+    if (Config.dev === true) {
       console.warn(message);
     }
   }
 
   static consoleError (message) {
-    if (__DEV__ === true) {
+    if (Config.dev === true) {
       console.error(message);
     }
   }

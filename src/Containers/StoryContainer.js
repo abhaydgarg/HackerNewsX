@@ -23,6 +23,19 @@ class StoryContainer extends Component {
     };
   }
 
+  async fetchMetadata (id, url) {
+    try {
+      const metadata = await getMetadata(id, url);
+      this.setState((prevState, props) => {
+        return {
+          story: { ...prevState.story, ...metadata }
+        };
+      });
+    } catch (err) {
+      Util.consoleWarn(err);
+    }
+  }
+
   async fetchStory () {
     try {
       let story = await getStory(this.props.id);
@@ -30,22 +43,17 @@ class StoryContainer extends Component {
         fetched: true,
         error: false,
         story: story
-      }, async () => {
+      }, () => {
         if (story.canFetchMetadata === true) {
-          const metadata = await getMetadata(story.id, story.url);
-          this.setState((prevState, props) => {
-            return {
-              story: { ...prevState.story, ...metadata }
-            };
-          });
+          this.fetchMetadata(story.id, story.url);
         }
       });
     } catch (err) {
-      Util.consoleError(err.message);
       this.setState({
         fetched: false,
         error: true
       });
+      Util.consoleWarn(err);
     }
   }
 

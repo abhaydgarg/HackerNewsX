@@ -7,11 +7,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import Config from '../Config';
 import getTheme from '../Theme';
 import Util from '../Lib/Util';
 import RootContainer from './RootContainer';
-
-const __DEV__ = process.env.NODE_ENV === 'development';
 
 class App extends Component {
   constructor (props) {
@@ -35,7 +34,7 @@ class App extends Component {
   }
 
   basename = () => {
-    if (__DEV__ === true) {
+    if (Config.dev === true) {
       return;
     }
     return '/HackerNewsX';
