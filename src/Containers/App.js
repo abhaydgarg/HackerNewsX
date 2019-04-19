@@ -3,11 +3,10 @@
  * is to setup Redux or any other non-visual "global" modules.
  */
 import { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Config from '../Config';
 import getTheme from '../Theme';
 import Util from '../Lib/Util';
 import RootContainer from './RootContainer';
@@ -33,18 +32,11 @@ class App extends Component {
     });
   }
 
-  basename = () => {
-    if (Config.dev === true) {
-      return;
-    }
-    return '/HackerNewsX';
-  }
-
   render () {
     return (
       <MuiThemeProvider theme={this.state.theme}>
         <CssBaseline />
-        <Router basename={this.basename()}>
+        <Router>
           <RootContainer />
         </Router>
       </MuiThemeProvider>
