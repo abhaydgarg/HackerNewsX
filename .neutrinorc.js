@@ -6,6 +6,12 @@ module.exports = {
     ['@neutrinojs/react', {
       html: {
         title: 'HackerNewsX',
+        minify: {
+          useShortDoctype: true,
+          keepClosingSlash: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false
+        },
         googleAnalytics: googleAnalytics(),
         links: [
           {
@@ -26,6 +32,7 @@ module.exports = {
         scripts: [
           // (process.env.NODE_ENV === 'development' ? { src: 'http://localhost:8097', type: 'text/javascript' } : {}),
         ],
+        headHtmlSnippet: headHtmlSnippet(),
         meta: [
           {
             name: 'author',
@@ -53,4 +60,11 @@ function googleAnalytics () {
     trackingId: 'UA-137847359-1',
     pageViewOnLoad: true
   }
+}
+
+function headHtmlSnippet () {
+  if (process.env.NODE_ENV === 'development') {
+    return undefined;
+  }
+  return `<script> window.addEventListener('hashchange', function (event) { if (typeof ga !== 'undefined') { ga('set', 'page', location.pathname + location.hash); ga('send', 'pageview'); } }); </script>`;
 }
