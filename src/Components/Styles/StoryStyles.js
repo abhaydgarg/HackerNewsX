@@ -17,7 +17,15 @@ export default (theme) => ({
     height: '25px'
   },
   description: {
-    wordBreak: 'break-word'
+    wordBreak: 'break-word',
+    '& a': {
+      color: theme.palette.primary.light,
+      textDecoration: 'none',
+      '&:hover': {
+        color: theme.palette.primary.main,
+        textDecoration: 'underline'
+      }
+    }
   },
   imageContainer: {
     width: '150px',

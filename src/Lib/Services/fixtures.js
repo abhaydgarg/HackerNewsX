@@ -17,7 +17,7 @@ export const storiesFixture = {
     'id': 19574396,
     'kids': [19574555, 19574823, 19574444],
     'score': 3,
-    'text': 'Hi HN,<p>I was wondering what tools can I use to build REST API from scratch.<p>EDIT: I was planning to setup my own server. Have an API gateway and use PostGreSQL.<p>Thanks,',
+    'text': 'Hi HN,<p>I was wondering what tools can I use to build REST API from scratch.<p>EDIT: I was planning to setup my own server. <a href="https://medium.com/@maartenvandoorn/you-cannot-talk-about-self-improvement-without-talking-about-values-1b755852c307">https://medium.com/@maartenvandoorn/you-cannot-talk-about-self-improvement-without-talking-about-values-1b755852c307</a>Have an API gateway and use PostGreSQL.<p>Thanks,',
     'time': 1554554089,
     'title': 'Ask HN: Tools for building high performance REST API in 2019',
     'type': 'story'
